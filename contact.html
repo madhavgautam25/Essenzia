@@ -28,6 +28,35 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Sidebar Navigation -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">Essenzia</a>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="sidebar-links">
+                <li><a href="index.html" class="sidebar-link">Home</a></li>
+                <li><a href="#products" class="sidebar-link">Products</a></li>
+                <li><a href="about.html" class="sidebar-link">About</a></li>
+                <li><a href="contact.html" class="sidebar-link active">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-icons">
+                <i class="fas fa-search sidebar-icon" id="mobileSearchToggle"></i>
+                <i class="fas fa-user sidebar-icon" id="mobileLoginToggle"></i>
+                <i class="fas fa-shopping-cart sidebar-icon" id="mobileCartToggle">
+                    <span class="cart-count" id="mobileCartCount">0</span>
+                </i>
+            </div>
+        </div>
+    </div>
+
     <section class="hero" style="height: 50vh;">
         <div class="hero-content">
             <h1>Contact Us</h1>
