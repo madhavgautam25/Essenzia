@@ -384,7 +384,7 @@ function toggleAuth() {
 }
 
 // Handle signup
-document.getElementById('signupForm').addEventListener('submit', function(e) {
+function handleSignup(e) {
     e.preventDefault();
     const name = e.target.querySelector('input[type="text"]').value;
     const email = e.target.querySelectorAll('input[type="email"]')[0].value;
@@ -406,10 +406,10 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     showNotification('Account created successfully!');
     toggleAuth();
     updateUserUI();
-});
+}
 
 // Handle login
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+function handleLogin(e) {
     e.preventDefault();
     const email = e.target.querySelector('input[type="email"]').value;
     const password = e.target.querySelector('input[type="password"]').value;
@@ -425,7 +425,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     showNotification('Login successful!');
     toggleAuth();
     updateUserUI();
-});
+}
 
 // Add logout feature
 function logoutUser() {
@@ -524,11 +524,94 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile menu toggle (basic implementation)
-document.querySelector('.mobile-toggle').addEventListener('click', () => {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+// Mobile sidebar functionality
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileSidebar = document.getElementById('mobileSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const sidebarClose = document.getElementById('sidebarClose');
+const mobileSearchToggle = document.getElementById('mobileSearchToggle');
+const mobileLoginToggle = document.getElementById('mobileLoginToggle');
+const mobileCartToggle = document.getElementById('mobileCartToggle');
+const mobileCartCount = document.getElementById('mobileCartCount');
+
+// Toggle mobile sidebar
+function toggleMobileSidebar() {
+    mobileSidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('active');
+    
+    if (mobileSidebar.classList.contains('open')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close mobile sidebar
+function closeMobileSidebar() {
+    mobileSidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for mobile sidebar
+mobileToggle.addEventListener('click', toggleMobileSidebar);
+sidebarClose.addEventListener('click', closeMobileSidebar);
+sidebarOverlay.addEventListener('click', closeMobileSidebar);
+
+// Mobile navigation links
+document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+        closeMobileSidebar();
+    });
 });
+
+// Mobile icons functionality
+mobileSearchToggle.addEventListener('click', () => {
+    closeMobileSidebar();
+    toggleSearch();
+});
+
+mobileLoginToggle.addEventListener('click', () => {
+    closeMobileSidebar();
+    toggleAuth();
+});
+
+mobileCartToggle.addEventListener('click', () => {
+    closeMobileSidebar();
+    toggleCart();
+});
+
+// Update mobile cart count
+function updateMobileCartUI() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    mobileCartCount.textContent = totalItems;
+    mobileCartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+}
+
+// Enhanced keyboard accessibility
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (mobileSidebar.classList.contains('open')) {
+            closeMobileSidebar();
+        }
+        if (cartSidebar.classList.contains('open')) {
+            toggleCart();
+        }
+        if (authModal.classList.contains('show')) {
+            toggleAuth();
+        }
+        if (productModal.classList.contains('show')) {
+            closeProductDetail();
+        }
+    }
+});
+
+// Update cart UI to include mobile cart count
+const originalUpdateCartUI = updateCartUI;
+updateCartUI = function() {
+    originalUpdateCartUI();
+    updateMobileCartUI();
+};
 
 // Keyboard accessibility
 document.addEventListener('keydown', (e) => {
