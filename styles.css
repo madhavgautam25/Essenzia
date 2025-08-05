@@ -867,6 +867,55 @@ body {
     .container {
         padding: 0 1rem;
     }
+
+    /* About and Contact page responsiveness */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .container p,
+    .container ul {
+        max-width: 100%;
+        margin: 1rem auto;
+        padding: 0 1rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .container ul {
+        text-align: left;
+        padding-left: 1.5rem;
+    }
+
+    form#contactForm {
+        max-width: 100%;
+        margin: 1rem auto;
+        padding: 1rem;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    form#contactForm .form-group {
+        margin-bottom: 1rem;
+    }
+
+    form#contactForm input,
+    form#contactForm textarea {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    form#contactForm button.auth-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 480px) {

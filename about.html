@@ -28,19 +28,19 @@
             </div>
         </div>
     </nav>
-    <section class="hero" style="height: 50vh;">
+    <section class="hero">
         <div class="hero-content">
             <h1>About Essenzia</h1>
             <p>Discover our story, values, and passion for fine fragrances.</p>
         </div>
     </section>
-    <section class="container" style="padding: 3rem 0;">
+    <section class="container">
         <h2 class="section-title">Our Story</h2>
-        <p style="max-width:700px;margin:2rem auto;text-align:center;">
+        <p>
             Essenzia was founded with a vision to bring luxury and elegance to everyday life through unique fragrances. Our curated collection is inspired by nature, art, and timeless traditions. Each perfume is crafted with care, blending premium ingredients for a memorable experience.
         </p>
         <h2 class="section-title">Our Values</h2>
-        <ul style="max-width:600px;margin:2rem auto;text-align:left;list-style:disc;padding-left:2rem;">
+        <ul>
             <li>Quality ingredients and ethical sourcing</li>
             <li>Customer satisfaction and transparency</li>
             <li>Innovation in fragrance design</li>
@@ -75,8 +75,10 @@
     </footer>
     <script>
 document.querySelector('.mobile-toggle').addEventListener('click', function() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    const mobileToggle = document.getElementById('mobileToggle');
+    if (mobileToggle) {
+        mobileToggle.click();
+    }
 });
 </script>
 </body>
